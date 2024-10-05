@@ -10,28 +10,22 @@ import java.util.stream.*;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 
-class Result {
-
-    /*
-     * Complete the 'diagonalDifference' function below.
-     *
-     * The function is expected to return an INTEGER.
-     * The function accepts 2D_INTEGER_ARRAY arr as parameter.
-     */
-
-    public static int diagonalDifference(List<List<Integer>> arr) {
+class Result
+{
+    public static int diagonalDifference(List<List<Integer>> arr)
+    {
         int n = arr.size();
-        int primaryDiagonalSum = 0;
-        int secondaryDiagonalSum = 0;
-        for (int i = 0; i < n; i++) {
-            List<Integer> line = arr.get(i);
-            primaryDiagonalSum += line.get(i);
-            secondaryDiagonalSum += line.get(n-i-1);
+        int primaryDiagonal = 0;
+        int secondaryDiagonal = 0;
+        
+        for (int i = 0; i < n; i++)
+        {
+            primaryDiagonal += arr.get(i).get(i);
+            secondaryDiagonal += arr.get(i).get(n - 1 - i);
         }
-        int difference = primaryDiagonalSum - secondaryDiagonalSum;
-        return difference < 0 ? difference * (-1) : difference;
+        
+        return Math.abs(primaryDiagonal - secondaryDiagonal);
     }
-
 }
 
 public class Solution {
